@@ -13,6 +13,25 @@ interface ChatMessageProps {
   index: number;
 }
 
+// Simple markdown-like formatting
+function formatContent(content: string) {
+  return content.split('\n').map((line, i) => {
+    // Bold text **text**
+    let formattedLine = line.replace(/\*\*(.+?)\*\*/g, '<strong class="text-primary font-semibold">$1</strong>');
+    
+    // Check if it's a list item
+    const isBullet = line.trim().startsWith('•') || line.trim().startsWith('-');
+    
+    return (
+      <span 
+        key={i} 
+        className={cn(isBullet && "block ml-2")}
+        dangerouslySetInnerHTML={{ __html: formattedLine || '&nbsp;' }}
+      />
+    );
+  });
+}
+
 export function ChatMessage({ message, index }: ChatMessageProps) {
   const isUser = message.role === 'user';
   
@@ -32,15 +51,17 @@ export function ChatMessage({ message, index }: ChatMessageProps) {
       
       <div
         className={cn(
-          "max-w-[80%] rounded-2xl px-4 py-3 transition-all duration-300",
+          "max-w-[85%] rounded-2xl px-4 py-3 transition-all duration-300",
           isUser
             ? "chat-bubble-user text-primary-foreground"
             : "chat-bubble-assistant"
         )}
       >
-        <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+        <div className="text-sm whitespace-pre-wrap leading-relaxed space-y-0.5">
+          {formatContent(message.content)}
+        </div>
         <span className={cn(
-          "text-[10px] mt-1 block opacity-60",
+          "text-[10px] mt-2 block opacity-60",
           isUser ? "text-right" : "text-left"
         )}>
           {message.timestamp.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
