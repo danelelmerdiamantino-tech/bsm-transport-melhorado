@@ -141,4 +141,79 @@
   .glass-effect {
     @apply backdrop-blur-md bg-card/80;
   }
+
+  /* Chat Neon Effects */
+  .chat-bubble-user {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(180 80% 40%) 100%);
+    box-shadow: 0 0 20px hsl(180 100% 50% / 0.4), inset 0 1px 0 hsl(180 100% 70% / 0.3);
+  }
+
+  .chat-bubble-user::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(180 100% 70% / 0.2), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .chat-bubble-assistant {
+    @apply border border-primary/30;
+    background: linear-gradient(145deg, hsl(222 47% 12%) 0%, hsl(222 47% 8%) 100%);
+    box-shadow: 0 0 15px hsl(180 100% 50% / 0.1), inset 0 1px 0 hsl(180 100% 50% / 0.1);
+  }
+
+  .chat-input-glow {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 10px hsl(180 100% 50% / 0.1);
+  }
+
+  .chat-input-glow:focus-within {
+    box-shadow: 0 0 25px hsl(180 100% 50% / 0.3), 0 0 50px hsl(180 100% 50% / 0.15);
+    @apply border-primary;
+  }
+
+  .send-button-glow {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 15px hsl(180 100% 50% / 0.3);
+  }
+
+  .send-button-glow:hover:not(:disabled) {
+    box-shadow: 0 0 30px hsl(180 100% 50% / 0.5), 0 0 60px hsl(180 100% 50% / 0.3);
+    transform: scale(1.05);
+  }
+
+  .send-button-glow:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  .typing-dot {
+    @apply w-2 h-2 rounded-full bg-primary;
+  }
+
+  .typing-dot:nth-child(1) { animation-delay: 0s; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  .bot-avatar-glow {
+    box-shadow: 0 0 20px hsl(180 100% 50% / 0.4);
+    animation: avatar-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes avatar-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(180 100% 50% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(180 100% 50% / 0.6);
+    }
+  }
 }
