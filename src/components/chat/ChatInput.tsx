@@ -41,10 +41,10 @@ export function ChatInput({ value, onChange, onSend, isLoading }: ChatInputProps
         </Button>
       </div>
       <div className="flex gap-2 mt-3 flex-wrap">
-        {['receita', 'despesa', 'salário', 'resumo'].map((cmd) => (
+        {['ajuda', 'resumo', 'motoristas', 'receitas', 'despesas'].map((cmd) => (
           <button
             key={cmd}
-            onClick={() => onChange(cmd + ' ')}
+            onClick={() => onChange(cmd === 'motoristas' || cmd === 'receitas' || cmd === 'despesas' ? `listar ${cmd}` : cmd)}
             className="px-3 py-1.5 text-xs rounded-full border border-primary/30 text-primary/70 hover:bg-primary/10 hover:border-primary/50 hover:text-primary transition-all duration-200 hover-glow"
           >
             {cmd}
