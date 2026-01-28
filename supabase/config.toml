@@ -1,0 +1,4 @@
+project_id = "evtihrpyyxnzefqqmmbl"
+
+[functions.parse-finance-command]
+verify_jwt = false

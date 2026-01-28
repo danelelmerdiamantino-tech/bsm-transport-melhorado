@@ -6,12 +6,20 @@ import { RevenueForm } from '@/components/RevenueForm';
 import { ExpenseForm } from '@/components/ExpenseForm';
 import { SalaryForm } from '@/components/SalaryForm';
 import { History } from '@/components/History';
+import { ChatInterface } from '@/components/ChatInterface';
 
 const Index = () => {
-  const [activeNav, setActiveNav] = useState<NavItem>('dashboard');
+  const [activeNav, setActiveNav] = useState<NavItem>('chat');
 
   const renderContent = () => {
     switch (activeNav) {
+      case 'chat':
+        return (
+          <div className="space-y-4">
+            <h1 className="text-2xl font-display font-bold neon-text">Chat BSM</h1>
+            <ChatInterface />
+          </div>
+        );
       case 'dashboard':
         return <Dashboard />;
       case 'revenue':
@@ -44,7 +52,7 @@ const Index = () => {
       case 'history':
         return <History />;
       default:
-        return <Dashboard />;
+        return <ChatInterface />;
     }
   };
 
