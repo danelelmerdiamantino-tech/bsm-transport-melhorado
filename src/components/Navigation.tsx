@@ -7,12 +7,13 @@ import {
   History, 
   Truck,
   Menu,
-  X
+  X,
+  MessageCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-type NavItem = 'dashboard' | 'revenue' | 'expense' | 'salary' | 'history';
+type NavItem = 'dashboard' | 'revenue' | 'expense' | 'salary' | 'history' | 'chat';
 
 interface NavigationProps {
   activeItem: NavItem;
@@ -20,6 +21,7 @@ interface NavigationProps {
 }
 
 const navItems = [
+  { id: 'chat' as NavItem, label: 'Chat', icon: MessageCircle },
   { id: 'dashboard' as NavItem, label: 'Dashboard', icon: LayoutDashboard },
   { id: 'revenue' as NavItem, label: 'Receitas', icon: TrendingUp },
   { id: 'expense' as NavItem, label: 'Despesas', icon: TrendingDown },
